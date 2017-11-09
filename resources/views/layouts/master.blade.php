@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Border Opportunities</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @yield('head')
     <script src="{{ asset('js/jquery/jquery-3.2.1.min.js') }}"></script>
@@ -38,16 +39,23 @@
 <div class="content-wrapper">
     @yield('content')
 </div>
-<footer>
-    <div class="row no-margin">
-        <div class="col-sm-4">
+<footer class="div-section">
+    <div class="container">
+        <div class="row no-margin cols-centered">
+            <div class="col-sm-4">
+                <p>3200 Sepulveda Blvd.
+                    Manhattan Beach, CA 90266,
 
-        </div>
-        <div class="col-sm-4">
-
-        </div>
-        <div class="col-sm-4">
-
+                    415.124.5678
+                    hello@thegravity.net</p>
+            </div>
+            <div class="col-sm-4">
+                <img class="img-fluid" src="{{ asset('img/index/logos/border.png') }}" alt="Border Opportunities">
+            </div>
+            <div class="col-sm-4 text-center">
+                <a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            </div>
         </div>
     </div>
     <div class="footer-bottom text-center">
