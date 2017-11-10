@@ -10,7 +10,23 @@
             <img class="img-fluid vertical-align absolute-centered" src="{{ asset('img/index/logos/border.png') }}" alt="Border Opportunities">
         </div>
     </div>
-    <div class="hexagons" id="hexagons">
+    <!-- ================================== -->
+
+    <!-- ///////////  WHY THE BORDER?  \\\\\\\\\\\ -->
+
+    <!-- ================================== -->
+    <div class="the-border div-section" id="the-border">
+        <div class="container light-spacing">
+            <h1 class="heading"><span class="blue">Why</span> the border?</h1>
+            <p class="text gray">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+        </div>
+    </div>
+    <!-- ================================== -->
+
+    <!-- ///////////  HEXAGONS  \\\\\\\\\\\ -->
+
+    <!-- ================================== -->
+    <div class="hexagons background-cover" id="hexagons">
         <div class="hexagons-container spacing">
             <ul id="hexGrid">
                 <li class="hex">
@@ -104,6 +120,52 @@
                     </div>
                 </li>
             </ul>
+        </div>
+    </div>
+    <!-- ================================== -->
+
+    <!-- ///////////  DIRECTORY  \\\\\\\\\\\ -->
+
+    <!-- ================================== -->
+    <div class="directory" id="directory">
+        <div class="container light-spacing">
+            <h1 class="heading"><span class="blue">Direc</span>tory</h1>
+            <div class="row">
+                <div class="col text-center"><img class="img-fluid" src="{{ asset('img/index/directory/1.png') }}" alt=""></div>
+                <div class="col text-center"><img class="img-fluid" src="{{ asset('img/index/directory/2.png') }}" alt=""></div>
+                <div class="col text-center"><img class="img-fluid" src="{{ asset('img/index/directory/3.png') }}" alt=""></div>
+                <div class="col text-center"><img class="img-fluid" src="{{ asset('img/index/directory/4.png') }}" alt=""></div>
+                <div class="col text-center"><img class="img-fluid" src="{{ asset('img/index/directory/5.png') }}" alt=""></div>
+                <div class="w-100"></div>
+            </div>
+        </div>
+    </div>
+    <!-- ================================== -->
+
+    <!-- ///////////  DIRECTORY  \\\\\\\\\\\ -->
+
+    <!-- ================================== -->
+    <div class="contact" id="contact">
+        <div class="container spacing">
+            <h1 class="heading white"><span class="white">Cont</span>act</h1>
+            <p class="text white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <div class="row cols-centered">
+                <div class="col-sm-6 white">
+                    <p>3200 Sepulveda Blvd.
+                        Manhattan Beach, CA 90266,
+
+                        415.124.5678
+                        hello@thegravity.net</p>
+                </div>
+                <div class="col-sm-6">
+                    <form action="" method="POST">
+                        <input type="text" name="name" placeholder="Name"><span class="bottom-line smooth-transition"></span>
+                        <input type="email" name="email" placeholder="Email"><span class="bottom-line smooth-transition"></span>
+                        <textarea name="msg" id="msg" cols="30" rows="7" placeholder="Message"></textarea><span class="bottom-line smooth-transition"></span>
+                        <button type="submit" class="smooth-transition">Send</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 @stop

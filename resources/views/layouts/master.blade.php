@@ -40,8 +40,8 @@
     @yield('content')
 </div>
 <footer class="div-section">
-    <div class="container">
-        <div class="row no-margin cols-centered">
+    <div class="container light-spacing">
+        <div class="row cols-centered">
             <div class="col-sm-4">
                 <p>3200 Sepulveda Blvd.
                     Manhattan Beach, CA 90266,

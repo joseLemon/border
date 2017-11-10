@@ -7,6 +7,10 @@
     src: url('../fonts/futuramedium.otf');
     font-family: 'Futura Medium';
 }
+@font-face {
+    src: url('../fonts/futurathin.ttf');
+    font-family: 'Futura Thin';
+}
 
 /* GENERAL STYLES */
 body {
@@ -34,7 +38,7 @@ body {
     margin: 0 auto;
 }
 
-.banner {
+.banner, .background-cover {
     background-size: cover!important;
 }
 
@@ -43,7 +47,11 @@ body {
 }
 
 .spacing {
-    padding: 100px 0;
+    padding: 100px 15px;
+}
+
+.light-spacing {
+    padding: 50px 15px;
 }
 
 .cols-centered {
@@ -58,6 +66,55 @@ p {
 
 a, a>i, .smooth-transition {
     transition: all 300ms ease;
+}
+
+.heading {
+    color: #ff6e00;
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+.heading span {
+    position: relative;
+}
+
+.heading>.blue {
+    color: #3158b4;
+}
+
+.heading>.white {
+    color: #fff;
+}
+
+.heading>.blue:after,
+.heading>.white:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    left: 0;
+    bottom: -21px;
+}
+
+.heading>.blue:after {
+    border-bottom: 3px solid #3158b4;
+}
+
+.heading>.white:after {
+    border-bottom: 3px solid #fff;
+}
+
+p.text {
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+.gray {
+    color: #5f6062;
+}
+
+.white {
+    color: #fff;
 }
 
 /* NAVBAR */
@@ -80,11 +137,113 @@ a, a>i, .smooth-transition {
     background: url("../img/index/banners/1.jpg") no-repeat center center;
 }
 
+/* WHY THE BORDER */
+#the-border {
+}
+
 /* HEXAGONS */
+#hexagons {
+    background: url("../img/index/backgrounds/1.jpg") no-repeat center center;
+}
+
 #hexagons .hexagons-container {
     max-width: 1170px;
+    padding-left: 0;
+    padding-right: 0;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* CONTACT */
+#contact {
+    background-color: #ff6e00;
+}
+
+#contact .row {
+    font-family: "Futura Thin", sans-serif;
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+#contact form {
+    position: relative;
+}
+
+#contact form input[type=text],
+#contact form input[type=email],
+#contact form textarea {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid #fff;
+    width: 100%;
+    min-height: 50px;
+    margin-bottom: 20px;
+    outline: none!important;
+    color: #fff;
+    position: relative;
+}
+
+#contact form .bottom-line {
+    content: '';
+    width: 0;
+    display: block;
+    border-bottom: 2px solid #fff;
+    left: 0;
+    position: absolute;
+    margin-top: -20px;
+}
+
+#contact form textarea + .bottom-line {
+    margin-top: -28px;
+}
+
+#contact form input[type=text]:focus + .bottom-line,
+#contact form input[type=email]:focus + .bottom-line,
+#contact form textarea:focus + .bottom-line,
+#contact form input[type=text]:active + .bottom-line,
+#contact form input[type=email]:active + .bottom-line,
+#contact form text:active + .bottom-line {
+    width: 100%;
+}
+
+#contact form textarea {
+    padding-top: 10px;
+    resize: vertical;
+}
+
+#contact form ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #fff;
+    opacity: .7;
+}
+#contact form :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #fff;
+    opacity:  .7;
+}
+#contact form ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #fff;
+    opacity:  .7;
+}
+#contact form :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:    #fff;
+    opacity: .7;
+}
+#contact form ::-ms-input-placeholder { /* Microsoft Edge */
+    color:    #fff;
+    opacity: .7;
+}
+
+#contact form button[type=submit] {
+    background-color: #3158b4;
+    border: 0;
+    color: #fff;
+    width: 100%;
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+#contact form button[type=submit]:hover,
+#contact form button[type=submit]:active {
+    background-color: #2b4d9e;
 }
 
 /* FOOTER */
@@ -94,7 +253,6 @@ footer {
 }
 
 footer .container {
-    padding: 30px 0;
 }
 
 footer a {
@@ -292,4 +450,7 @@ footer a:hover i {
 }
 
 @media (max-width: 767px) {
+    #directory .col {
+        flex-basis: 100%;
+    }
 }
