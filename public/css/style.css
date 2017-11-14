@@ -141,6 +141,76 @@ p.text {
 #the-border {
 }
 
+#the-border .row {
+    margin-top: 20px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
+}
+
+#the-border .row .col {
+    padding: 0 5px;
+}
+
+#the-border .row .col:before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: calc(100% - 10px);
+    height: 100%;
+    left: 5px;
+    right: 0;
+    background-color: #3158b4;
+    opacity: .0;
+    -webkit-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    -ms-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+
+#the-border .row .col:hover:before {
+    opacity: .75;
+}
+
+#the-border .row .col:after {
+    content: '';
+    position: absolute;
+    display: block;
+    right: 5px;
+    top: 28%;
+    width: 40%;
+    height: 3px;
+    background: #fff;
+    transform: rotate(-45deg);
+    opacity: 0;
+    -webkit-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    -ms-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+
+#the-border .row .col:hover:after,
+#the-border .row .col:hover .text-container h2,
+#the-border .row .col:hover .text-container p {
+    opacity: 1;
+}
+
+#the-border .text-container {
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    padding: 15px;
+}
+
+#the-border .text-container h2,
+#the-border .text-container p {
+    margin: 0;
+    opacity: 0;
+}
+
 /* HEXAGONS */
 #hexagons {
     background: url("../img/index/backgrounds/1.jpg") no-repeat center center;
@@ -343,49 +413,77 @@ footer a:hover i {
     transform: rotate3d(0,0,0,0deg);
 }
 
-.hex h1, .hex p {
-    width: 100%;
-    padding: 5%;
-    box-sizing:border-box;
-    background-color: rgba(0, 128, 128, 0.8);
-    font-weight: 300;
+.hex h3, .hex a:before {
     -webkit-transition:  -webkit-transform .2s ease-out, opacity .3s ease-out;
     transition:          transform .2s ease-out, opacity .3s ease-out;
 }
-.hex h1 {
-    bottom: 50%;
-    padding-top:50%;
-    font-size: 1.5em;
+.hex h3 {
     z-index: 1;
-    -webkit-transform:translate3d(0,-100%,0);
-    -ms-transform:translate3d(0,-100%,0);
-    transform:translate3d(0,-100%,0);
     margin: 0;
+    top: 50%;
+    left: 0;
+    right: 0;
+    -webkit-transform: translateY(-50%) translateZ(0);
+    -moz-transform: translateY(-50%) translateZ(0);
+    -ms-transform: translateY(-50%) translateZ(0);
+    -o-transform: translateY(-50%) translateZ(0);
+    transform: translateY(-50%) translateZ(0);
+    padding: 10px;
+    opacity: 0;
+    color: #fff;
+
+    -ms-word-break: break-all;
+    word-break: break-all;
+
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+
+    text-align: left;
+
+    font-size: 38px;
+    line-height: 1;
 }
-.hex h1::after {
+
+.hex h3::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 45%;
-    width: 10%;
+    left: 10px;
+    width: 30%;
     text-align: center;
-    border-bottom: 1px solid #fff;
-}
-.hex p {
-    top: 50%;
-    padding-bottom:50%;
-    -webkit-transform:translate3d(0,100%,0);
-    -ms-transform:translate3d(0,100%,0);
-    transform:translate3d(0,100%,0);
+    border-bottom: 4px solid #fff;
 }
 
+.hex .hexLink:before {
+    content: '';
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    opacity: 0;
+}
+
+.hex:nth-child(1n) .hexLink:before {
+    background-color: #e16c19;
+}
+
+.hex:nth-child(2n) .hexLink:before {
+    background-color: #3158b4;
+}
+
+.hex:nth-child(3n) .hexLink:before {
+    background-color: #5f6062;
+}
 
 /*** HOVER EFFECT  ***/
-.hexLink:hover h1, .hexLink:focus h1,
-.hexLink:hover p, .hexLink:focus p{
-    -webkit-transform:translate3d(0,0,0);
-    -ms-transform:translate3d(0,0,0);
-    transform:translate3d(0,0,0);
+.hexLink:hover h3, .hexLink:focus h3 {
+    opacity: 1;
+}
+
+.hexLink:hover:before {
+    opacity: .75;
 }
 
 /*** HEXAGON SIZING AND EVEN ROW INDENTATION ***/
@@ -423,6 +521,9 @@ footer a:hover i {
     .hex:nth-child(5n-4){ /* first hexagon of uneven rows */
         margin-left:16.666%;  /* = width of .hex / 2  to indent even rows */
     }
+    .hex h3 {
+        font-size: 30px;
+    }
 }
 
 @media (max-width: 600px) { /* <- 2-1  hexagons per row */
@@ -435,11 +536,17 @@ footer a:hover i {
     .hex:nth-child(3n-2){ /* first hexagon of uneven rows */
         margin-left:25%;  /* = width of .hex / 2  to indent even rows */
     }
+    .hex h3 {
+        font-size: 30px;
+    }
 }
 
 @media (max-width: 400px) {
     #hexGrid {
         font-size: 13px;
+    }
+    .hex h3 {
+        font-size: 26px;
     }
 }
 
@@ -450,7 +557,11 @@ footer a:hover i {
 }
 
 @media (max-width: 767px) {
-    #directory .col {
+    #directory .col, #the-border .col {
         flex-basis: 100%;
+    }
+    #the-border .col {
+        max-width: 400px;
+        margin: 0 auto;
     }
 }

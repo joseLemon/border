@@ -19,6 +19,29 @@
         <div class="container light-spacing">
             <h1 class="heading"><span class="blue">Why</span> the border?</h1>
             <p class="text gray">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+            <div class="row">
+                <div class="col">
+                    <img class="img-fluid" src="{{ asset('img/index/about/1.png') }}" alt="">
+                    <div class="text-container">
+                        <h2 class="smooth-transition">Location</h2>
+                        <p class="smooth-transition">Lorem ipsum dolor sit amet</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img class="img-fluid" src="{{ asset('img/index/about/2.png') }}" alt="">
+                    <div class="text-container">
+                        <h2 class="smooth-transition">Location</h2>
+                        <p class="smooth-transition">Lorem ipsum dolor sit amet</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img class="img-fluid" src="{{ asset('img/index/about/3.png') }}" alt="">
+                    <div class="text-container">
+                        <h2 class="smooth-transition">Location</h2>
+                        <p class="smooth-transition">Lorem ipsum dolor sit amet</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- ================================== -->
@@ -32,90 +55,112 @@
                 <li class="hex">
                     <div class="hexIn">
                         <a class="hexLink" href="#">
-                            <img src="https://farm9.staticflickr.com/8461/8048823381_0fbc2d8efb.jpg" alt="" />
-                            <h1>This is a title</h1>
-                            <p>Some sample text about the article this hexagon leads to</p>
+                            <img src="{{ asset('img/index/hexagons/1.png') }}" alt="" />
+                            <h3>Aeroespacial</h3>
                         </a>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
                         <a class="hexLink" href="#">
-                            <img src="https://farm5.staticflickr.com/4144/5053682635_b348b24698.jpg" alt="" />
-                            <h1>This is a title</h1>
-                            <p>Some sample text about the article this hexagon leads to</p>
+                            <img src="{{ asset('img/index/hexagons/2.png') }}" alt="" />
+                            <h3>Aeroespacial</h3>
                         </a>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
                         <a class="hexLink" href="#">
-                            <img src="https://farm3.staticflickr.com/2827/10384422264_d9c7299146.jpg" alt="" />
-                            <h1>This is a title</h1>
-                            <p>Some sample text about the article this hexagon leads to</p>
+                            <img src="{{ asset('img/index/hexagons/3.png') }}" alt="" />
+                            <h3>Aeroespacial</h3>
                         </a>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
                         <a class="hexLink" href="#">
-                            <img src="https://farm7.staticflickr.com/6217/6216951796_e50778255c.jpg" alt="" />
-                            <h1>This is a title</h1>
-                            <p>Some sample text about the article this hexagon leads to</p>
+                            <img src="{{ asset('img/index/hexagons/4.png') }}" alt="" />
+                            <h3>Aeroespacial</h3>
                         </a>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
                         <a class="hexLink" href="#">
-                            <img src="https://farm7.staticflickr.com/6083/6055581292_d94c2d90e3.jpg" alt="" />
-                            <h1>This is a title</h1>
-                            <p>Some sample text about the article this hexagon leads to</p>
+                            <img src="{{ asset('img/index/hexagons/5.png') }}" alt="" />
+                            <h3>Aeroespacial</h3>
                         </a>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
                         <a class="hexLink" href="#">
-                            <img src="https://farm3.staticflickr.com/2827/10384422264_d9c7299146.jpg" alt="" />
-                            <h1>This is a title</h1>
-                            <p>Some sample text about the article this hexagon leads to</p>
+                            <img src="{{ asset('img/index/hexagons/6.png') }}" alt="" />
+                            <h3>Aeroespacial</h3>
                         </a>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
                         <a class="hexLink" href="#">
-                            <img src="https://farm8.staticflickr.com/7187/6895047173_d4b1a0d798.jpg" alt="" />
-                            <h1>This is a title</h1>
-                            <p>Some sample text about the article this hexagon leads to</p>
+                            <img src="{{ asset('img/index/hexagons/7.png') }}" alt="" />
+                            <h3>Aeroespacial</h3>
                         </a>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
                         <a class="hexLink" href="#">
-                            <img src="https://farm4.staticflickr.com/3766/12953056854_b8cdf14f21.jpg" alt="" />
-                            <h1>This is a title</h1>
-                            <p>Some sample text about the article this hexagon leads to</p>
+                            <img src="{{ asset('img/index/hexagons/8.png') }}" alt="" />
+                            <h3>Aeroespacial</h3>
                         </a>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
                         <a class="hexLink" href="#">
-                            <img src="https://farm7.staticflickr.com/6139/5986939269_10721b8017.jpg" alt="" />
-                            <h1>This is a title</h1>
-                            <p>Some sample text about the article this hexagon leads to</p>
+                            <img src="{{ asset('img/index/hexagons/9.png') }}" alt="" />
+                            <h3>Aeroespacial</h3>
                         </a>
                     </div>
                 </li>
                 <li class="hex">
                     <div class="hexIn">
                         <a class="hexLink" href="#">
-                            <img src="https://farm4.staticflickr.com/3165/5733278274_2626612c70.jpg" alt="" />
-                            <h1>This is a title</h1>
-                            <p>Some sample text about the article this hexagon leads to</p>
+                            <img src="{{ asset('img/index/hexagons/10.png') }}" alt="" />
+                            <h3>Aeroespacial</h3>
+                        </a>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <a class="hexLink" href="#">
+                            <img src="{{ asset('img/index/hexagons/11.png') }}" alt="" />
+                            <h3>Aeroespacial</h3>
+                        </a>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <a class="hexLink" href="#">
+                            <img src="{{ asset('img/index/hexagons/12.png') }}" alt="" />
+                            <h3>Aeroespacial</h3>
+                        </a>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <a class="hexLink" href="#">
+                            <img src="{{ asset('img/index/hexagons/1.png') }}" alt="" />
+                            <h3>Aeroespacial</h3>
+                        </a>
+                    </div>
+                </li>
+                <li class="hex">
+                    <div class="hexIn">
+                        <a class="hexLink" href="#">
+                            <img src="{{ asset('img/index/hexagons/2.png') }}" alt="" />
+                            <h3>Aeroespacial</h3>
                         </a>
                     </div>
                 </li>
