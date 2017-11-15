@@ -11,26 +11,30 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @yield('head')
     <script src="{{ asset('js/jquery/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui/easing/jquery-ui-easing.js') }}"></script>
     <script src="{{ asset('js/popper.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/functionality.js') }}"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="#"></a>
+
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="main-navbar">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Why the border?</a>
+                <a class="nav-link smoothscroll" href="#the-border">Why the border?</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Directory</a>
+                <a class="nav-link smoothscroll" href="#directory">Directory</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
+                <a class="nav-link smoothscroll" href="#contact">Contact</a>
             </li>
         </ul>
     </div>
