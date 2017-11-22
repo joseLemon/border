@@ -4,20 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SIDE</title>
+    <title>{{ env('APP_NAME') }}</title>
     <link rel="icon" href="{{ asset('public/favicon.ico') }}">
-    <link rel="stylesheet" href="{{ asset('public/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/css/cms/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/js/modules/jquery-confirm/css/jquery-confirm.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/js/modules/jquery-ui/datepicker/jquery-ui-datepicker.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/js/modules/jquery-ui/selectmenu/jquery-ui-selectmenu.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('cms/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('cms/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('cms/js/jquery-confirm/css/jquery-confirm.css') }}">
     @yield('head')
-    <script src="{{ asset('public/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('public/js/modules/jquery-confirm/js/jquery-confirm.js') }}"></script>
-    <script src="{{ asset('public/js/modules/jquery-ui/datepicker/jquery-ui-datepicker.js') }}"></script>
-    <script src="{{ asset('public/js/modules/jquery-ui/selectmenu/jquery-ui-selectmenu.min.js') }}"></script>
+    <script src="{{ asset('js/jquery/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui/easing/jquery-ui-easing.js') }}"></script>
+    <script src="{{ asset('cms/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('cms/js/jquery-confirm/js/jquery-confirm.js') }}"></script>
     <script>
         $(document).ready(function () {
             // Add slideDown animation to Bootstrap dropdown when expanding.
@@ -32,7 +29,7 @@
 
             $('.navbar-collapse').on('show.bs.collapse', function () {
                 $('.main-menu').addClass('active');
-            })
+            });
 
             $('.navbar-collapse').on('hide.bs.collapse', function () {
                 $('.main-menu').removeClass('active');
@@ -60,33 +57,13 @@
 
         <div class="collapse navbar-collapse" id="nav-collapse">
             <ul class="nav navbar-nav">
-                @if(\Auth::user()->user_role_id < 3)
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-pencil menu-icon" aria-hidden="true"></i> Blog <i class="fa fa-chevron-right chevron" aria-hidden="true"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ route('blog.create') }}">Nuevo</a></li>
-                            <li><a href="{{ route('blog.show') }}">Ver</a></li>
-                        </ul>
-                    </li>
-                @endif
-                @if(\Auth::user()->user_role_id == 1)
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-file-o menu-icon" aria-hidden="true"></i> Páginas <i class="fa fa-chevron-right chevron" aria-hidden="true"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ route('page.create') }}">Nuevo</a></li>
-                            <li><a href="{{ route('pages.show') }}">Ver</a></li>
-                        </ul>
-                    </li>
-                @endif
-                @if(\Auth::user()->user_role_id == 1)
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users menu-icon" aria-hidden="true"></i> Usuarios <i class="fa fa-chevron-right chevron" aria-hidden="true"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ route('register') }}">Nuevo</a></li>
-                            <li><a href="{{ route('users.show') }}">Ver</a></li>
-                        </ul>
-                    </li>
-                @endif
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users menu-icon" aria-hidden="true"></i> Usuarios <i class="fa fa-chevron-right chevron" aria-hidden="true"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('register') }}">Nuevo</a></li>
+                        <li><a href="{{ route('users.show') }}">Ver</a></li>
+                    </ul>
+                </li>
                 <li class="dropdown">
                     <a href="{{ url('/').'/logout' }}"><i class="fa fa-sign-out menu-icon" aria-hidden="true"></i> Cerrar sesión</a>
                 </li>

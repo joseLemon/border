@@ -1,0 +1,7 @@
+.table-cms thead {
+    background-color: rgba(0,0,0,.03);
+}
+
+.table-cms td {
+    vertical-align: middle!important;
+}

@@ -43,32 +43,15 @@ class LoginController extends Controller
 
     public static function index() {
         if(\Auth::user()) {
-            if(Auth::user()->user_role_id > 3) {
-                $page_id = Auth::user()->page_id;
-                if($page_id) {
-                    return redirect()->route('page.edit',[$page_id]);
-                } else {
-                    // return custom error page
-                    return abort(403);
-                }
-            }
-            return redirect()->route('blog.show');
+            return redirect()->route('cms.index');
+        } else {
+            return view('auth.login');
         }
-        return view('auth.login');
     }
 
     public function login(Request $request) {
         if(\Auth::user()) {
-            if(Auth::user()->user_role_id > 3) {
-                $page_id = Auth::user()->page_id;
-                if($page_id) {
-                    return redirect()->route('page.edit',[$page_id]);
-                } else {
-                    // return custom error page
-                    return abort(403);
-                }
-            }
-            return redirect()->route('blog.show');
+            return redirect()->route('cms.index');
         }
         $data = $request->all();
         $data['email'] = trim($request->input('email'));
@@ -86,16 +69,7 @@ class LoginController extends Controller
         $user = User::where('email', 'LIKE', $request->input('email'))->first();
         if($user !== NULL && Hash::check($request->input('password'), $user->password)) {
             if (Auth::loginUsingId($user->user_id)) {
-                if(Auth::user()->user_role_id > 3) {
-                    $page_id = Auth::user()->page_id;
-                    if($page_id) {
-                        return redirect()->route('page.edit',[$page_id]);
-                    } else {
-                        // return custom error page
-                        return abort(403);
-                    }
-                }
-                return redirect()->route('blog.show');
+                return redirect()->route('cms.index');
             } else {
                 \Session::flash('alertMessage','El usuario y/o contraseña es incorrecto');
                 \Session::flash('alert-class','alert-danger');

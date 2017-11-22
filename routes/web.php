@@ -25,9 +25,14 @@ Route::group(['middleware' => '\App\Http\Middleware\AfterLogin'], function() {
 
     Route::group(['middleware' => '\App\Http\Middleware\IsUserAdmin'], function() {
         // Registration Routes...
-        Route::get('register', ['as' => 'register', 'uses' => 'Auth\RegisterController@registerUser']);
-        Route::post('register', ['as' => '', 'uses' => 'Auth\RegisterController@register']);
+        Route::get('register', ['as' => 'register', 'uses' => 'Auth\RegisterController@showRegistrationForm']);
+        Route::post('register', ['as' => 'register.post', 'uses' => 'Auth\RegisterController@register']);
     });
+
+    //  CMS SECTION
+    include('cms.php');
+    //  USERS SECTION
+    include('users.php');
 });
 
 Route::group(['middleware' => '\App\Http\Middleware\BeforeLogin'], function() {

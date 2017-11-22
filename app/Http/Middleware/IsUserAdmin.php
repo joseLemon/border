@@ -13,13 +13,7 @@ class IsUserAdmin {
     public function handle($request, Closure $next){
         if(\Auth::user()) {
             if(Auth::user()->user_role_id != 1) {
-                $page_id = Auth::user()->page_id;
-                if($page_id) {
-                    return redirect()->route('page.edit',[$page_id]);
-                } else {
-                    // return custom error page
-                    return abort(403);
-                }
+                return abort(404);
             }
         }
         return $next($request);
