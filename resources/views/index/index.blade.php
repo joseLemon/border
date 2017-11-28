@@ -5,9 +5,9 @@
     <!-- ///////////  BANNER  \\\\\\\\\\\ -->
 
     <!-- ================================== -->
-    <div class="banner div-section" id="banner">
+    <div class="banner div-section" id="banner" style="background: url('{{ asset('uploads/cms/banner_img'. strchr($cms->banner_img,'.')) }}') no-repeat center center;">
         <div class="container text-center">
-            <img class="img-fluid vertical-align absolute-centered" src="{{ asset('img/index/logos/border.png') }}" alt="Border Opportunities">
+            <img class="img-fluid vertical-align absolute-centered" src="{{ asset('uploads/cms/banner_top_img'. strchr($cms->banner_top_img,'.')) }}" alt="Border Opportunities">
         </div>
     </div>
     <!-- ================================== -->
@@ -17,28 +17,28 @@
     <!-- ================================== -->
     <div class="the-border div-section" id="the-border">
         <div class="container light-spacing">
-            <h1 class="heading"><span class="blue">Why</span> the border?</h1>
-            <p class="text gray">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+            <h1 class="heading">{!! isset($cms) ? $cms->about_title : '' !!}</h1>
+            <p class="text gray">{{ isset($cms) ? $cms->about_text : '' }}</p>
             <div class="row">
                 <div class="col">
-                    <img class="img-fluid" src="{{ asset('img/index/about/1.png') }}" alt="">
+                    <img class="img-fluid" src="{{ asset('uploads/cms/about_item_1_img'. strchr($cms->about_item_1_img,'.')) }}" alt="">
                     <div class="text-container">
-                        <h2 class="smooth-transition">Location</h2>
-                        <p class="smooth-transition">Lorem ipsum dolor sit amet</p>
+                        <h2 class="smooth-transition">{{ isset($cms) ? $cms->about_item_1_title : '' }}</h2>
+                        <p class="smooth-transition">{{ isset($cms) ? $cms->about_item_1_text : '' }}</p>
                     </div>
                 </div>
                 <div class="col">
-                    <img class="img-fluid" src="{{ asset('img/index/about/2.png') }}" alt="">
+                    <img class="img-fluid" src="{{ asset('uploads/cms/about_item_2_img'. strchr($cms->about_item_2_img,'.')) }}" alt="">
                     <div class="text-container">
-                        <h2 class="smooth-transition">Location</h2>
-                        <p class="smooth-transition">Lorem ipsum dolor sit amet</p>
+                        <h2 class="smooth-transition">{{ isset($cms) ? $cms->about_item_2_title : '' }}</h2>
+                        <p class="smooth-transition">{{ isset($cms) ? $cms->about_item_2_text : '' }}</p>
                     </div>
                 </div>
                 <div class="col">
-                    <img class="img-fluid" src="{{ asset('img/index/about/3.png') }}" alt="">
+                    <img class="img-fluid" src="{{ asset('uploads/cms/about_item_3_img'. strchr($cms->about_item_3_img,'.')) }}" alt="">
                     <div class="text-container">
-                        <h2 class="smooth-transition">Location</h2>
-                        <p class="smooth-transition">Lorem ipsum dolor sit amet</p>
+                        <h2 class="smooth-transition">{{ isset($cms) ? $cms->about_item_3_title : '' }}</h2>
+                        <p class="smooth-transition">{{ isset($cms) ? $cms->about_item_3_text : '' }}</p>
                     </div>
                 </div>
             </div>
@@ -174,7 +174,7 @@
     <!-- ================================== -->
     <div class="directory" id="directory">
         <div class="container light-spacing">
-            <h1 class="heading"><span class="blue">Direc</span>tory</h1>
+            <h1 class="heading">{!! isset($cms) ? $cms->directory_title : '' !!}</h1>
             <div class="row">
                 <div class="col text-center"><img class="img-fluid" src="{{ asset('img/index/directory/1.png') }}" alt=""></div>
                 <div class="col text-center"><img class="img-fluid" src="{{ asset('img/index/directory/2.png') }}" alt=""></div>
@@ -187,20 +187,16 @@
     </div>
     <!-- ================================== -->
 
-    <!-- ///////////  DIRECTORY  \\\\\\\\\\\ -->
+    <!-- ///////////  CONTACT  \\\\\\\\\\\ -->
 
     <!-- ================================== -->
     <div class="contact" id="contact">
         <div class="container spacing">
-            <h1 class="heading white"><span class="white">Cont</span>act</h1>
-            <p class="text white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <h1 class="heading white">{!! isset($cms) ? $cms->contact_title : '' !!}</h1>
+            <p class="text white">{{ isset($cms) ? $cms->contact_text : '' }}</p>
             <div class="row cols-centered">
                 <div class="col-sm-6 white">
-                    <p>3200 Sepulveda Blvd.
-                        Manhattan Beach, CA 90266,
-
-                        415.124.5678
-                        hello@thegravity.net</p>
+                    <p>{{ isset($cms) ? $cms->contact_address : '' }}</p>
                 </div>
                 <div class="col-sm-6">
                     <form action="" method="POST">

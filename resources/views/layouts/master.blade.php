@@ -43,27 +43,28 @@
 <div class="content-wrapper">
     @yield('content')
 </div>
+<!-- ================================== -->
+
+<!-- ///////////  FOOTER  \\\\\\\\\\\ -->
+
+<!-- ================================== -->
 <footer class="div-section">
     <div class="container light-spacing">
         <div class="row cols-centered">
             <div class="col-sm-4">
-                <p>3200 Sepulveda Blvd.
-                    Manhattan Beach, CA 90266,
-
-                    415.124.5678
-                    hello@thegravity.net</p>
+                <p>{{ isset($cms) ? $cms->footer_address: '' }}</p>
             </div>
             <div class="col-sm-4">
-                <img class="img-fluid" src="{{ asset('img/index/logos/border.png') }}" alt="Border Opportunities">
+                <img class="img-fluid" src="{{ asset('uploads/cms/footer_img'. strchr($cms->footer_img,'.')) }}" alt="Border Opportunities">
             </div>
             <div class="col-sm-4 text-center">
-                <a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                <a href="{{ isset($cms) ? $cms->footer_fb : '#' }}"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="{{ isset($cms) ? $cms->footer_twitter : '#' }}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
             </div>
         </div>
     </div>
     <div class="footer-bottom text-center">
-        <span>Derechos Reservados {{ date('Y') }}</span>
+        <span>{{ isset($cms) ? $cms->footer_bottom: '' }}</span>
     </div>
 </footer>
 @yield('scripts')

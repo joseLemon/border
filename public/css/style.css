@@ -182,7 +182,7 @@ p.text {
 /* BANNER */
 #banner {
     min-height: 100vh;
-    background: url("../img/index/banners/1.jpg") no-repeat center center;
+    /*background: url("../img/index/banners/1.jpg") no-repeat center center;*/
 }
 
 /* WHY THE BORDER */

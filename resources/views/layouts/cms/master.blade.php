@@ -58,6 +58,13 @@
         <div class="collapse navbar-collapse" id="nav-collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-pencil-square menu-icon" aria-hidden="true"></i> Gestionar <i class="fa fa-chevron-right chevron" aria-hidden="true"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{route('cms.index') }}">Gestionar sitio</a></li>
+                        <li><a href="{{route('cms.index') }}">Gestionar hexágonos</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users menu-icon" aria-hidden="true"></i> Usuarios <i class="fa fa-chevron-right chevron" aria-hidden="true"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('register') }}">Nuevo</a></li>
