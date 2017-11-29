@@ -59,11 +59,10 @@
 
                 var form = $(this);
                 var inputList = $('#directoryInputList'),
-                    panels = $('#accordion-directories > .panel');
+                    panels = $('#accordion-directories > .col-sm-4 > .panel');
                 inputList.empty();
 
-                if(($('#page_type').prop('disabled' == true) || $('#page_type').val() == 4) && panels.length > 0) {
-                    console.log('enter');
+                if(panels.length > 0) {
                     panels.each(function () {
                         var panel = $(this),
                             title = panel.find('.directory-title').val(),
@@ -79,20 +78,14 @@
                         if(title == '') {
                             validation = directoriesValidation();
                         } else {
-                            panel.find('.directory-title').each(function () {
-                                var input_title = $(this),
-                                    title = input_title.val(),
-                                    text = input_title.next().val(),
-                                    directory_id = input_title.closest('.panel').attr('my_id');
+                            panel.find('input[type=file]').each(function () {
+                                var input = $(this),
+                                    directory_id = input.closest('.panel').attr('my_id');
 
-                                if(title == '' || text == '') {
-                                    metaList = '';
+                                if(directory_id === 'new') {
+                                    metaList += '_@@_' + '_%%_new';
                                 } else {
-                                    if(directory_id === 'new') {
-                                        metaList += '_@@_' + title + '_%%_' + text + '_%%_new';
-                                    } else {
-                                        metaList += '_@@_' + title + '_%%_' + text + '_%%_' + directory_id;
-                                    }
+                                    metaList += '_@@_' + '_%%_' + directory_id;
                                 }
                             });
                             if(metaList == '') {
@@ -123,26 +116,22 @@
                 if(button.hasClass('new')) {
                     panel.remove();
                 } else {
-                    var id = panel.attr('my_id'),
-                        type = panel.attr('type');
+                    var id = panel.attr('my_id');
 
                     $.ajax({
-                        type: 'GET',
-                        //url: '{ route('directory.delete') }}',
-                        data: {
-                            'id': id,
-                            'type': type
+                        type: 'POST',
+                        url: '{{ url('/cms') }}/' + id + '/delete',
+                        success: function () {
+                            location.reload();
+                        },
+                        fail: function () {
+                            $.alert({
+                                title: 'Error al borrar el directorio.',
+                                content: 'No se pudo completar la operación, intentalo nuevamente más tarde.',
+                                backgroundDismiss: 'cancel'
+                            })
                         }
-                    }).success(function () {
-                        location.reload();
-                    }).fail(function () {
-                        $.alert({
-                            title: 'Error al borrar el Carrusel o directoryo.',
-                            content: 'No se pudo completar la operación, intentalo nuevamente más tarde.',
-                            backgroundDismiss: 'cancel'
-                        })
                     });
-
                 }
             });
         }
@@ -292,7 +281,20 @@
                                         </div>
                                         <div id="collapse{{ $count+1 }}" class="panel-collapse collapse">
                                             <div class="panel-body text-right">
-                                                <input type="text" name="directory_title_{{ $count+1 }}" id="directory_title_{{ $count+1 }}" placeholder="Título del directorio" class="input-cms directory-title" value="{{ $directory->directory_title }}">
+                                                <div class="text-center">
+                                                    <label for="directory_{{ $count+1 }}_img" class="img_upload_container">
+                                                        <div class="img-preview img-container preview active">
+                                                            <button type="button" class="remove-img"><i class="fa fa-window-close-o" aria-hidden="true"></i></button>
+                                                            <img src="{{  asset('/uploads/cms/directories/'.$directory->directory_img . '?=' . rand(1,99999999)) }}" id="preview" class="center-block img-responsive">
+                                                        </div>
+                                                        Imagen del directorio
+                                                        <label for="directory_{{ $count+1 }}_img" class="input-file-cms">
+                                                            Elegir imagen
+                                                            <input type="file" name="directory_{{ $count+1 }}_img" id="directory_{{ $count+1 }}_img" accept="image/*" class="input-file-img">
+                                                            <input type="hidden" name="directory_{{ $count+1 }}'_img_check" id="directory_{{ $count+1 }}_img_check">
+                                                        </label>
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

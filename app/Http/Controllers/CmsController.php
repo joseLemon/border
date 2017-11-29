@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cms;
+use App\Models\Directory;
 use Illuminate\Http\Request;
 
 class CmsController extends Controller
 {
     public function index() {
         $cms = Cms::find(1);
+        $directories = Directory::get();
 
         $params = [
-            'cms' => $cms
+            'cms' => $cms,
+            'directories' => $directories
         ];
 
         return view('cms.index',$params);
@@ -124,9 +127,41 @@ class CmsController extends Controller
         $cms->footer_bottom = $request->input('footer_bottom');
         $cms->save();
 
+        $directories = $request->input('directories');
+        foreach($directories as $iterationId => $element) {
+            $elementArray = explode('_@@_', $element);
+            $directory_id = $elementArray[1];
+            if($directory_id == 'new') {
+                $directory = new Directory();
+            } else {
+                $directory = Directory::find($directory_id);
+            }
+            $img_file = 'directory_'.($iterationId+1).'_img';
+            if(isset($_FILES[$img_file])) {
+                if($_FILES[$img_file]['size'] > 0) {
+                    $delete = false;
+                    if($directory->directory_img) {
+                        $delete = true;
+                    }
+                    fileUploadController::imgUpload(public_path().'/uploads/cms/directories/',$img_file,$delete, true,1920,2000,true, false);
+                    $directory->directory_img = $img_file.strchr($_FILES[$img_file]['name'],'.');
+                }
+            }
+            if($request->input($img_file.'_check') == 'removed') {
+                fileUploadController::deleteFile(public_path().'/uploads/cms/directories/',$img_file.strchr($directory->directory_img,'.'));
+                $directory->directory_img = \DB::raw('NULL');
+            }
+            $directory->save();
+        }
+
         \Session::flash('alertMessage','Contenido editado correctamente.');
         \Session::flash('alert-class','alert-success');
 
         return redirect()->route('cms.index');
+    }
+
+    public function deleteDirectory($id) {
+        $directory = Directory::find($id);
+        $directory->delete();
     }
 }

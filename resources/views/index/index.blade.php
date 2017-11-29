@@ -176,12 +176,12 @@
         <div class="container light-spacing">
             <h1 class="heading">{!! isset($cms) ? $cms->directory_title : '' !!}</h1>
             <div class="row">
-                <div class="col text-center"><img class="img-fluid" src="{{ asset('img/index/directory/1.png') }}" alt=""></div>
-                <div class="col text-center"><img class="img-fluid" src="{{ asset('img/index/directory/2.png') }}" alt=""></div>
-                <div class="col text-center"><img class="img-fluid" src="{{ asset('img/index/directory/3.png') }}" alt=""></div>
-                <div class="col text-center"><img class="img-fluid" src="{{ asset('img/index/directory/4.png') }}" alt=""></div>
-                <div class="col text-center"><img class="img-fluid" src="{{ asset('img/index/directory/5.png') }}" alt=""></div>
-                <div class="w-100"></div>
+                @foreach($directories as $key => $directory)
+                    @if($key % 5 == 0)
+                        <div class="w-100"></div>
+                    @endif
+                    <div class="col text-center"><img class="img-fluid" src="{{  asset('/uploads/cms/directories/'.$directory->directory_img) }}" alt=""></div>
+                @endforeach
             </div>
         </div>
     </div>
