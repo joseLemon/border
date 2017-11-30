@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Hexagons extends Model {
+class Hexagon extends Model {
     /*
      *
      * REFERENCE TO TABLE NAME

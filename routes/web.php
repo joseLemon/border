@@ -19,6 +19,9 @@ Route::get('/', ['as' => 'site.index', 'uses' => 'IndexController@index']);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//  MAILS SECTION
+include('mailer.php');
+
 //  ACCESS TO AUTHENTICATED USERS
 Route::group(['middleware' => '\App\Http\Middleware\AfterLogin'], function() {
     Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);

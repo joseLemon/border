@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cms;
 use App\Models\Directory;
+use App\Models\Hexagon;
 
 class IndexController extends Controller
 {
@@ -11,10 +12,12 @@ class IndexController extends Controller
     {
         $cms = Cms::find(1);
         $directories = Directory::get();
+        $hexagons = Hexagon::get();
 
         $params = [
             'cms' => $cms,
-            'directories' => $directories
+            'directories' => $directories,
+            'hexagons' => $hexagons
         ];
 
         return view('index.index',$params);

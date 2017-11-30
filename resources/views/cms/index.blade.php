@@ -52,54 +52,125 @@
                 deletePanel();
                 initReadFiles();
             });
+            $('#add-hexagon').click(function () {
+                var accordion = $('#accordion-hexagons'),
+                    panel_number = ($('#accordion-hexagons .panel').length)+1,
+                    panel_id = 'panel-'+panel_number;
+
+                accordion.append(
+                    '<div class="col-sm-4" style="margin-bottom: 5px;">' +
+                    '<div class="panel panel-default" id="' + panel_id + '" my_id="new" type="hexagon" style="margin: 0;">' +
+                    '<div class="panel-heading" data-toggle="collapse" data-parent="#accordion-hexagons" href="#collapse' + panel_number + '">' +
+                    '<h4 class="panel-title">Hexágono ' + panel_number +
+                    '<button type="button" class="expand-accordion">' +
+                    '<i class="fa fa-plus" aria-hidden="true"></i>' +
+                    '</button>' +
+                    '<button type="button" class="deletePanel new">' +
+                    '<i class="fa fa-times" aria-hidden="true"></i>' +
+                    '</button>' +
+                    '</h4>' +
+                    '</div>' +
+                    '<div id="collapse' + panel_number + '" class="panel-collapse collapse">' +
+                    '<div class="panel-body text-right">' +
+                    '<div class="text-center">' +
+                    '<input type="text" name="hexagon_' + panel_number + '_title" class="input-cms hexagon-title" placeholder="Título del hexágono">' +
+                    '<label for="hexagon_' + panel_number + '_img" class="img_upload_container">' +
+                    '<div class="img-preview img-container preview">' +
+                    '<button type="button" class="remove-img"><i class="fa fa-window-close-o" aria-hidden="true"></i></button>' +
+                    '<img src="" id="preview" class="center-block img-responsive">' +
+                    '</div>' +
+                    'Imagen del hexágono' +
+                    '<label for="hexagon_' + panel_number + '_img" class="input-file-cms">' +
+                    'Elegir imagen' +
+                    '<input type="file" name="hexagon_' + panel_number + '_img" id="hexagon_' + panel_number + '_img" accept="image/*" class="input-file-img">' +
+                    '<input type="hidden" name="hexagon_' + panel_number + '_img_check" id="hexagon_' + panel_number + '_img_check">' +
+                    '</label>' +
+                    '</label>' +
+                    '</div>' +
+                    '<div class="panel-group text-left" id="accordion-hexagon-info-' + panel_number + '"></div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>'
+                );
+
+                /*if((panel_number%3) === 0) {
+                    accordion.append('<div class="clearfix"></div>')
+                }*/
+
+                deletePanel();
+                initReadFiles();
+            });
 
             $('form').submit(function (e) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
 
                 var form = $(this);
+
                 var inputList = $('#directoryInputList'),
                     panels = $('#accordion-directories > .col-sm-4 > .panel');
                 inputList.empty();
 
+                var inputList2 = $('#hexagonInputList'),
+                    panels2 = $('#accordion-hexagons> .col-sm-4 > .panel');
+                inputList2.empty();
+
+                var validation = true;
+
                 if(panels.length > 0) {
                     panels.each(function () {
                         var panel = $(this),
-                            title = panel.find('.directory-title').val(),
-                            metaList = '',
-                            directory_id = panel.attr('my_id'),
-                            validation = true;
-                        if(directory_id === 'new') {
-                            metaList = title + '_@@_new';
+                            metaList = '';
+
+                        panel.find('input[type=file]').each(function () {
+                            var input = $(this),
+                                directory_id = input.closest('.panel').attr('my_id');
+
+                            if(directory_id === 'new') {
+                                metaList = 'directory_@@_new';
+                            } else {
+                                metaList = 'directory_@@_' + directory_id;
+                            }
+                        });
+                        if(metaList == '') {
+                            directoriesValidation();
                         } else {
-                            metaList = title + '_@@_' + directory_id;
+                            inputList.append('<input type="hidden" name="directories[]" id="directories" value="' + metaList + '">');
                         }
 
+                    });
+                }
+
+                if(panels2.length > 0) {
+                    panels2.each(function () {
+                        var panel = $(this),
+                            title = panel.find('.hexagon-title').val(),
+                            metaList = '';
+
                         if(title == '') {
-                            validation = directoriesValidation();
+                            validation = hexagonsValidation();
                         } else {
                             panel.find('input[type=file]').each(function () {
                                 var input = $(this),
-                                    directory_id = input.closest('.panel').attr('my_id');
+                                    hexagon_id = input.closest('.panel').attr('my_id');
 
-                                if(directory_id === 'new') {
-                                    metaList += '_@@_' + '_%%_new';
+                                if(hexagon_id === 'new') {
+                                    metaList = title + '_@@_new';
                                 } else {
-                                    metaList += '_@@_' + '_%%_' + directory_id;
+                                    metaList = title + '_@@_' + hexagon_id;
                                 }
                             });
                             if(metaList == '') {
-                                directoriesValidation();
+                                hexagonsValidation();
                             } else {
-                                inputList.append('<input type="hidden" name="directories[]" id="directories" value="' + metaList + '">');
+                                inputList2.append('<input type="hidden" name="hexagons[]" id="hexagons" value="' + metaList + '">');
                             }
                         }
 
-                        if(validation) {
-                            form[0].submit();
-                        }
                     });
-                } else {
+                }
+
+                if(validation) {
                     form[0].submit();
                 }
             });
@@ -116,17 +187,26 @@
                 if(button.hasClass('new')) {
                     panel.remove();
                 } else {
-                    var id = panel.attr('my_id');
+                    var id = panel.attr('my_id'),
+                        type = '';
+
+                    if(button.hasClass('directory-panel')) {
+                        type = 'directory';
+                    }
+
+                    if(button.hasClass('hexagon-panel')) {
+                        type = 'hexagon';
+                    }
 
                     $.ajax({
                         type: 'POST',
-                        url: '{{ url('/cms') }}/' + id + '/delete',
+                        url: '{{ url('/cms') }}/' + id + '/' + type + '/delete',
                         success: function () {
                             location.reload();
                         },
                         fail: function () {
                             $.alert({
-                                title: 'Error al borrar el directorio.',
+                                title: 'Error al borrar el elemento.',
                                 content: 'No se pudo completar la operación, intentalo nuevamente más tarde.',
                                 backgroundDismiss: 'cancel'
                             })
@@ -138,8 +218,17 @@
 
         function directoriesValidation() {
             $.alert({
-                title: 'Error en los directoryos',
-                content: 'Asegurate de llenar toda la información de los directoryos antes de continuar.',
+                title: 'Error en los directorios',
+                content: 'Asegurate de llenar toda la información de los directorios antes de continuar.',
+                backgroundDismiss: 'cancel'
+            });
+            return false;
+        }
+
+        function hexagonsValidation() {
+            $.alert({
+                title: 'Error en los hexágonos',
+                content: 'Asegurate de llenar toda la información de los hexágonos antes de continuar.',
                 backgroundDismiss: 'cancel'
             });
             return false;
@@ -261,6 +350,60 @@
             </div>
             <div class="row no-margin">
                 <div class="col-sm-12">
+                    <h3>Hexágonos</h3>
+
+                    <div class="panel-group row" id="accordion-hexagons">
+                        @if(isset($hexagons))
+                            @foreach($hexagons as $count => $hexagon)
+                                <div class="col-sm-4" style="margin-bottom: 5px;">
+                                    <div class="panel panel-default" id="{{ $count+1 }}" my_id="{{ $hexagon->hexagon_id }}" type="hexagon" style="margin: 0;">
+                                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion-hexagons" href="#hexagonCollapse{{ $count+1 }}">
+                                            <h4 class="panel-title">Hexágono {{ $count+1 }}
+                                                <button type="button" class="expand-accordion">
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                </button>
+                                                <button type="button" class="deletePanel hexagon-panel">
+                                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                                </button>
+                                            </h4>
+                                        </div>
+                                        <div id="hexagonCollapse{{ $count+1 }}" class="panel-collapse collapse">
+                                            <div class="panel-body text-right">
+                                                <div class="text-center">
+                                                    <input type="text" name="hexagon_{{ $count+1 }}_title" class="input-cms hexagon-title" placeholder="Título del hexágono" value="{{ $hexagon->hexagon_title }}">
+                                                    <label for="hexagon_{{ $count+1 }}_img" class="img_upload_container">
+                                                        <div class="img-preview img-container preview active">
+                                                            <button type="button" class="remove-img"><i class="fa fa-window-close-o" aria-hidden="true"></i></button>
+                                                            <img src="{{  asset('/uploads/cms/hexagons/'.$hexagon->hexagon_img . '?=' . rand(1,99999999)) }}" id="preview" class="center-block img-responsive">
+                                                        </div>
+                                                        Imagen del hexágono
+                                                        <label for="hexagon_{{ $count+1 }}_img" class="input-file-cms">
+                                                            Elegir imagen
+                                                            <input type="file" name="hexagon_{{ $count+1 }}_img" id="hexagon_{{ $count+1 }}_img" accept="image/*" class="input-file-img">
+                                                            <input type="hidden" name="hexagon_{{ $count+1 }}'_img_check" id="hexagon_{{ $count+1 }}_img_check">
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @if(($count+1)%3 == 0)
+                                <!--<div class="clearfix"></div>-->
+                                @endif
+                            @endforeach
+                        @endif
+                    </div>
+
+                    <div class="text-right">
+                        <button type="button" id="add-hexagon">Agregar hexágono</button>
+                    </div>
+
+                    <div id="hexagonInputList" class="hidden"></div>
+                </div>
+            </div>
+            <div class="row no-margin">
+                <div class="col-sm-12">
                     <h3>Directorio</h3>
                     {!! Form::text('directory_title',isset($cms) ? $cms->directory_title : old('directory_title'),['class'=>'input-cms','id'=>'directory_title','placeholder'=>'Título de la sección']) !!}
 
@@ -269,17 +412,17 @@
                             @foreach($directories as $count => $directory)
                                 <div class="col-sm-4" style="margin-bottom: 5px;">
                                     <div class="panel panel-default" id="{{ $count+1 }}" my_id="{{ $directory->directory_id }}" type="directory" style="margin: 0;">
-                                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion-directories" href="#collapse{{ $count+1 }}">
+                                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion-directories" href="#directoryCollapse{{ $count+1 }}">
                                             <h4 class="panel-title">Directorio {{ $count+1 }}
                                                 <button type="button" class="expand-accordion">
                                                     <i class="fa fa-plus" aria-hidden="true"></i>
                                                 </button>
-                                                <button type="button" class="deletePanel">
+                                                <button type="button" class="deletePanel directory-panel">
                                                     <i class="fa fa-times" aria-hidden="true"></i>
                                                 </button>
                                             </h4>
                                         </div>
-                                        <div id="collapse{{ $count+1 }}" class="panel-collapse collapse">
+                                        <div id="directoryCollapse{{ $count+1 }}" class="panel-collapse collapse">
                                             <div class="panel-body text-right">
                                                 <div class="text-center">
                                                     <label for="directory_{{ $count+1 }}_img" class="img_upload_container">

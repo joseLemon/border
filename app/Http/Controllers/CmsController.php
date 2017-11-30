@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cms;
 use App\Models\Directory;
+use App\Models\Hexagon;
 use Illuminate\Http\Request;
 
 class CmsController extends Controller
@@ -11,10 +12,12 @@ class CmsController extends Controller
     public function index() {
         $cms = Cms::find(1);
         $directories = Directory::get();
+        $hexagons = Hexagon::get();
 
         $params = [
             'cms' => $cms,
-            'directories' => $directories
+            'directories' => $directories,
+            'hexagons' => $hexagons
         ];
 
         return view('cms.index',$params);
@@ -128,30 +131,62 @@ class CmsController extends Controller
         $cms->save();
 
         $directories = $request->input('directories');
-        foreach($directories as $iterationId => $element) {
-            $elementArray = explode('_@@_', $element);
-            $directory_id = $elementArray[1];
-            if($directory_id == 'new') {
-                $directory = new Directory();
-            } else {
-                $directory = Directory::find($directory_id);
-            }
-            $img_file = 'directory_'.($iterationId+1).'_img';
-            if(isset($_FILES[$img_file])) {
-                if($_FILES[$img_file]['size'] > 0) {
-                    $delete = false;
-                    if($directory->directory_img) {
-                        $delete = true;
-                    }
-                    fileUploadController::imgUpload(public_path().'/uploads/cms/directories/',$img_file,$delete, true,1920,2000,true, false);
-                    $directory->directory_img = $img_file.strchr($_FILES[$img_file]['name'],'.');
+        if($directories) {
+            foreach($directories as $iterationId => $element) {
+                $elementArray = explode('_@@_', $element);
+                $directory_id = $elementArray[1];
+                if($directory_id == 'new') {
+                    $directory = new Directory();
+                } else {
+                    $directory = Directory::find($directory_id);
                 }
+                $img_file = 'directory_'.($iterationId+1).'_img';
+                if(isset($_FILES[$img_file])) {
+                    if($_FILES[$img_file]['size'] > 0) {
+                        $delete = false;
+                        if($directory->directory_img) {
+                            $delete = true;
+                        }
+                        fileUploadController::imgUpload(public_path().'/uploads/cms/directories/',$img_file,$delete, true,1920,2000,true, false);
+                        $directory->directory_img = $img_file.strchr($_FILES[$img_file]['name'],'.');
+                    }
+                }
+                if($request->input($img_file.'_check') == 'removed') {
+                    fileUploadController::deleteFile(public_path().'/uploads/cms/directories/',$img_file.strchr($directory->directory_img,'.'));
+                    $directory->directory_img = \DB::raw('NULL');
+                }
+                $directory->save();
             }
-            if($request->input($img_file.'_check') == 'removed') {
-                fileUploadController::deleteFile(public_path().'/uploads/cms/directories/',$img_file.strchr($directory->directory_img,'.'));
-                $directory->directory_img = \DB::raw('NULL');
+        }
+
+        $hexagons = $request->input('hexagons');
+        if($hexagons) {
+            foreach($hexagons as $iterationId => $element) {
+                $elementArray = explode('_@@_', $element);
+                $hexagon_id = $elementArray[1];
+                if($hexagon_id == 'new') {
+                    $hexagon = new Hexagon();
+                } else {
+                    $hexagon = Hexagon::find($hexagon_id);
+                }
+                $img_file = 'hexagon_'.($iterationId+1).'_img';
+                if(isset($_FILES[$img_file])) {
+                    if($_FILES[$img_file]['size'] > 0) {
+                        $delete = false;
+                        if($hexagon->hexagon_img) {
+                            $delete = true;
+                        }
+                        fileUploadController::imgUpload(public_path().'/uploads/cms/hexagons/',$img_file,$delete, true,1920,2000,true, false);
+                        $hexagon->hexagon_img = $img_file.strchr($_FILES[$img_file]['name'],'.');
+                    }
+                }
+                if($request->input($img_file.'_check') == 'removed') {
+                    fileUploadController::deleteFile(public_path().'/uploads/cms/hexagons/',$img_file.strchr($hexagon->hexagon_img,'.'));
+                    $hexagon->hexagon_img = \DB::raw('NULL');
+                }
+                $hexagon->hexagon_title = $elementArray[0];
+                $hexagon->save();
             }
-            $directory->save();
         }
 
         \Session::flash('alertMessage','Contenido editado correctamente.');
@@ -160,8 +195,15 @@ class CmsController extends Controller
         return redirect()->route('cms.index');
     }
 
-    public function deleteDirectory($id) {
-        $directory = Directory::find($id);
-        $directory->delete();
+    public function deleteElement($id,$type) {
+        if($type == 'directory') {
+            $directory = Directory::find($id);
+            $directory->delete();
+        }
+
+        if($type == 'hexagon') {
+            $hexagon = Hexagon::find($id);
+            $hexagon->delete();
+        }
     }
 }

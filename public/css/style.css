@@ -357,6 +357,7 @@ p.text {
     width: 100%;
     padding: 5px 0;
     cursor: pointer;
+    outline: none!important;
 }
 
 #contact form button[type=submit]:hover,

@@ -52,118 +52,16 @@
     <div class="hexagons background-cover" id="hexagons">
         <div class="hexagons-container spacing">
             <ul id="hexGrid">
-                <li class="hex">
-                    <div class="hexIn">
-                        <a class="hexLink" href="#">
-                            <img src="{{ asset('img/index/hexagons/1.png') }}" alt="" />
-                            <h3>Aeroespacial</h3>
-                        </a>
-                    </div>
-                </li>
-                <li class="hex">
-                    <div class="hexIn">
-                        <a class="hexLink" href="#">
-                            <img src="{{ asset('img/index/hexagons/2.png') }}" alt="" />
-                            <h3>Aeroespacial</h3>
-                        </a>
-                    </div>
-                </li>
-                <li class="hex">
-                    <div class="hexIn">
-                        <a class="hexLink" href="#">
-                            <img src="{{ asset('img/index/hexagons/3.png') }}" alt="" />
-                            <h3>Aeroespacial</h3>
-                        </a>
-                    </div>
-                </li>
-                <li class="hex">
-                    <div class="hexIn">
-                        <a class="hexLink" href="#">
-                            <img src="{{ asset('img/index/hexagons/4.png') }}" alt="" />
-                            <h3>Aeroespacial</h3>
-                        </a>
-                    </div>
-                </li>
-                <li class="hex">
-                    <div class="hexIn">
-                        <a class="hexLink" href="#">
-                            <img src="{{ asset('img/index/hexagons/5.png') }}" alt="" />
-                            <h3>Aeroespacial</h3>
-                        </a>
-                    </div>
-                </li>
-                <li class="hex">
-                    <div class="hexIn">
-                        <a class="hexLink" href="#">
-                            <img src="{{ asset('img/index/hexagons/6.png') }}" alt="" />
-                            <h3>Aeroespacial</h3>
-                        </a>
-                    </div>
-                </li>
-                <li class="hex">
-                    <div class="hexIn">
-                        <a class="hexLink" href="#">
-                            <img src="{{ asset('img/index/hexagons/7.png') }}" alt="" />
-                            <h3>Aeroespacial</h3>
-                        </a>
-                    </div>
-                </li>
-                <li class="hex">
-                    <div class="hexIn">
-                        <a class="hexLink" href="#">
-                            <img src="{{ asset('img/index/hexagons/8.png') }}" alt="" />
-                            <h3>Aeroespacial</h3>
-                        </a>
-                    </div>
-                </li>
-                <li class="hex">
-                    <div class="hexIn">
-                        <a class="hexLink" href="#">
-                            <img src="{{ asset('img/index/hexagons/9.png') }}" alt="" />
-                            <h3>Aeroespacial</h3>
-                        </a>
-                    </div>
-                </li>
-                <li class="hex">
-                    <div class="hexIn">
-                        <a class="hexLink" href="#">
-                            <img src="{{ asset('img/index/hexagons/10.png') }}" alt="" />
-                            <h3>Aeroespacial</h3>
-                        </a>
-                    </div>
-                </li>
-                <li class="hex">
-                    <div class="hexIn">
-                        <a class="hexLink" href="#">
-                            <img src="{{ asset('img/index/hexagons/11.png') }}" alt="" />
-                            <h3>Aeroespacial</h3>
-                        </a>
-                    </div>
-                </li>
-                <li class="hex">
-                    <div class="hexIn">
-                        <a class="hexLink" href="#">
-                            <img src="{{ asset('img/index/hexagons/12.png') }}" alt="" />
-                            <h3>Aeroespacial</h3>
-                        </a>
-                    </div>
-                </li>
-                <li class="hex">
-                    <div class="hexIn">
-                        <a class="hexLink" href="#">
-                            <img src="{{ asset('img/index/hexagons/1.png') }}" alt="" />
-                            <h3>Aeroespacial</h3>
-                        </a>
-                    </div>
-                </li>
-                <li class="hex">
-                    <div class="hexIn">
-                        <a class="hexLink" href="#">
-                            <img src="{{ asset('img/index/hexagons/2.png') }}" alt="" />
-                            <h3>Aeroespacial</h3>
-                        </a>
-                    </div>
-                </li>
+                @foreach($hexagons as $hexagon)
+                    <li class="hex">
+                        <div class="hexIn">
+                            <a class="hexLink" href="#">
+                                <img src="{{ asset('/uploads/cms/hexagons/'.$hexagon->hexagon_img) }}" alt="" />
+                                <h3>Aeroespacial</h3>
+                            </a>
+                        </div>
+                    </li>
+                @endforeach
             </ul>
         </div>
     </div>
@@ -199,14 +97,55 @@
                     <p>{{ isset($cms) ? $cms->contact_address : '' }}</p>
                 </div>
                 <div class="col-sm-6">
-                    <form action="" method="POST">
-                        <input type="text" name="name" placeholder="Name"><span class="bottom-line smooth-transition"></span>
-                        <input type="email" name="email" placeholder="Email"><span class="bottom-line smooth-transition"></span>
-                        <textarea name="msg" id="msg" cols="30" rows="7" placeholder="Message"></textarea><span class="bottom-line smooth-transition"></span>
+                    <div class="alert hidden" id="contact-alert-box"></div>
+                    {!! Form::open(['route' => ['mailer.contact'], 'id' => 'formContact']) !!}
+                        <input type="text" name="contact_name" placeholder="Name"><span class="bottom-line smooth-transition"></span>
+                        <input type="email" name="contact_email" placeholder="Email"><span class="bottom-line smooth-transition"></span>
+                        <textarea name="contact_message" id="msg" cols="30" rows="7" placeholder="Message"></textarea><span class="bottom-line smooth-transition"></span>
                         <button type="submit" class="smooth-transition">Send</button>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
+@stop
+@section('scripts')
+    <script>
+        $('#formContact').submit(function (e) {
+            e.preventDefault();
+            var form = $(this),
+                alertBox = $('#contact-alert-box'),
+                button = form.find('button');
+
+            button.html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="font-size: 23px;"></i>');
+
+            $.ajax({
+                type: 'POST',
+                url: form.attr('action'),
+                data: form.serialize(),
+                dataType: 'JSON'
+            }).always(function (data) {
+                alertBox.empty();
+                button.html('send');
+
+                alertBox.removeClass('hidden').removeClass('alert-success').removeClass('alert-danger');
+
+                if(data.alert_class) {
+                    alertBox.addClass(data.alert_class);
+                    alertBox.text(data.msg);
+                }
+
+                alertBox.fadeTo(2000, 500).slideUp(500, function(){
+                    alertBox.slideUp(500);
+                });
+
+                if(data.responseJSON) {
+                    alertBox.addClass('alert-danger');
+                    $.each(data.responseJSON, function (index, msg) {
+                        alertBox.append(msg + '<br>');
+                    })
+                }
+            });
+        });
+    </script>
 @stop
