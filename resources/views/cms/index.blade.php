@@ -251,7 +251,7 @@
                     <label for="banner_img" class="img_upload_container">
                         <div class="img-preview img-container preview @isset($cms->banner_img){{ 'active' }}@endisset">
                             <button type="button" class="remove-img"><i class="fa fa-window-close-o" aria-hidden="true"></i></button>
-                            <img src="@isset($cms->banner_img){{ asset('uploads/cms/banner_img'. strchr($cms->banner_img,'.') . '?=' . rand(1,99999999)) }}@endisset" id="preview" class="center-block img-responsive">
+                            <img src="@isset($cms->banner_img){{ asset('public/uploads/cms/banner_img'. strchr($cms->banner_img,'.') . '?=' . rand(1,99999999)) }}@endisset" id="preview" class="center-block img-responsive">
                         </div>
                         Imagen del banner
                         <label for="banner_img" class="input-file-cms">
@@ -265,7 +265,7 @@
                     <label for="banner_top_img" class="img_upload_container">
                         <div class="img-preview img-container preview @isset($cms->banner_top_img){{ 'active' }}@endisset">
                             <button type="button" class="remove-img"><i class="fa fa-window-close-o" aria-hidden="true"></i></button>
-                            <img src="@isset($cms->banner_top_img){{ asset('uploads/cms/banner_top_img'. strchr($cms->banner_top_img,'.') . '?=' . rand(1,99999999)) }}@endisset" id="preview" class="center-block img-responsive">
+                            <img src="@isset($cms->banner_top_img){{ asset('public/uploads/cms/banner_top_img'. strchr($cms->banner_top_img,'.') . '?=' . rand(1,99999999)) }}@endisset" id="preview" class="center-block img-responsive">
                         </div>
                         Imagen frontal del banner
                         <label for="banner_top_img" class="input-file-cms">
@@ -295,7 +295,7 @@
                         <label for="about_item_1_img" class="img_upload_container">
                             <div class="img-preview img-container preview @isset($cms->about_item_1_img){{ 'active' }}@endisset">
                                 <button type="button" class="remove-img"><i class="fa fa-window-close-o" aria-hidden="true"></i></button>
-                                <img src="@isset($cms->about_item_1_img){{ asset('uploads/cms/about_item_1_img'. strchr($cms->about_item_1_img,'.') . '?=' . rand(1,99999999)) }}@endisset" id="preview" class="center-block img-responsive">
+                                <img src="@isset($cms->about_item_1_img){{ asset('public/uploads/cms/about_item_1_img'. strchr($cms->about_item_1_img,'.') . '?=' . rand(1,99999999)) }}@endisset" id="preview" class="center-block img-responsive">
                             </div>
                             Imagen de la sección
                             <label for="about_item_1_img" class="input-file-cms">
@@ -315,7 +315,7 @@
                         <label for="about_item_2_img" class="img_upload_container">
                             <div class="img-preview img-container preview @isset($cms->about_item_2_img){{ 'active' }}@endisset">
                                 <button type="button" class="remove-img"><i class="fa fa-window-close-o" aria-hidden="true"></i></button>
-                                <img src="@isset($cms->about_item_2_img){{ asset('uploads/cms/about_item_2_img'. strchr($cms->about_item_2_img,'.') . '?=' . rand(1,99999999)) }}@endisset" id="preview" class="center-block img-responsive">
+                                <img src="@isset($cms->about_item_2_img){{ asset('public/uploads/cms/about_item_2_img'. strchr($cms->about_item_2_img,'.') . '?=' . rand(1,99999999)) }}@endisset" id="preview" class="center-block img-responsive">
                             </div>
                             Imagen de la sección
                             <label for="about_item_2_img" class="input-file-cms">
@@ -336,7 +336,7 @@
                         <label for="about_item_3_img" class="img_upload_container">
                             <div class="img-preview img-container preview @isset($cms->about_item_3_img){{ 'active' }}@endisset">
                                 <button type="button" class="remove-img"><i class="fa fa-window-close-o" aria-hidden="true"></i></button>
-                                <img src="@isset($cms->about_item_3_img){{ asset('uploads/cms/about_item_3_img'. strchr($cms->about_item_3_img,'.') . '?=' . rand(1,99999999)) }}@endisset" id="preview" class="center-block img-responsive">
+                                <img src="@isset($cms->about_item_3_img){{ asset('public/uploads/cms/about_item_3_img'. strchr($cms->about_item_3_img,'.') . '?=' . rand(1,99999999)) }}@endisset" id="preview" class="center-block img-responsive">
                             </div>
                             Imagen de la sección
                             <label for="about_item_3_img" class="input-file-cms">
@@ -374,7 +374,7 @@
                                                     <label for="hexagon_{{ $count+1 }}_img" class="img_upload_container">
                                                         <div class="img-preview img-container preview active">
                                                             <button type="button" class="remove-img"><i class="fa fa-window-close-o" aria-hidden="true"></i></button>
-                                                            <img src="{{  asset('/uploads/cms/hexagons/'.$hexagon->hexagon_img . '?=' . rand(1,99999999)) }}" id="preview" class="center-block img-responsive">
+                                                            <img src="{{  asset('public//uploads/cms/hexagons/'.$hexagon->hexagon_img . '?=' . rand(1,99999999)) }}" id="preview" class="center-block img-responsive">
                                                         </div>
                                                         Imagen del hexágono
                                                         <label for="hexagon_{{ $count+1 }}_img" class="input-file-cms">
@@ -428,7 +428,7 @@
                                                     <label for="directory_{{ $count+1 }}_img" class="img_upload_container">
                                                         <div class="img-preview img-container preview active">
                                                             <button type="button" class="remove-img"><i class="fa fa-window-close-o" aria-hidden="true"></i></button>
-                                                            <img src="{{  asset('/uploads/cms/directories/'.$directory->directory_img . '?=' . rand(1,99999999)) }}" id="preview" class="center-block img-responsive">
+                                                            <img src="{{  asset('public//uploads/cms/directories/'.$directory->directory_img . '?=' . rand(1,99999999)) }}" id="preview" class="center-block img-responsive">
                                                         </div>
                                                         Imagen del directorio
                                                         <label for="directory_{{ $count+1 }}_img" class="input-file-cms">
@@ -485,7 +485,7 @@
                         <label for="footer_img" class="img_upload_container">
                             <div class="img-preview img-container preview @isset($cms->footer_img){{ 'active' }}@endisset">
                                 <button type="button" class="remove-img"><i class="fa fa-window-close-o" aria-hidden="true"></i></button>
-                                <img src="@isset($cms->footer_img){{ asset('uploads/cms/footer_img'. strchr($cms->footer_img,'.') . '?=' . rand(1,99999999)) }}@endisset" id="preview" class="center-block img-responsive">
+                                <img src="@isset($cms->footer_img){{ asset('public/uploads/cms/footer_img'. strchr($cms->footer_img,'.') . '?=' . rand(1,99999999)) }}@endisset" id="preview" class="center-block img-responsive">
                             </div>
                             Imagen de la sección
                             <label for="footer_img" class="input-file-cms">

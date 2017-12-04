@@ -6,15 +6,16 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Border Opportunities</title>
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="icon" href="{{ asset('public/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ asset('public/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/css/style.css') }}">
     @yield('head')
-    <script src="{{ asset('js/jquery/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('js/jquery-ui/easing/jquery-ui-easing.js') }}"></script>
-    <script src="{{ asset('js/popper.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/functionality.js') }}"></script>
+    <script src="{{ asset('public/js/jquery/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('public/js/jquery-ui/easing/jquery-ui-easing.js') }}"></script>
+    <script src="{{ asset('public/js/popper.js') }}"></script>
+    <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('public/js/functionality.js') }}"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
@@ -55,7 +56,7 @@
                 <p>{{ isset($cms) ? $cms->footer_address: '' }}</p>
             </div>
             <div class="col-sm-4">
-                <img class="img-fluid" src="{{ asset('uploads/cms/footer_img'. strchr($cms->footer_img,'.')) }}" alt="Border Opportunities">
+                <img class="img-fluid" src="{{ asset('public/uploads/cms/footer_img'. strchr($cms->footer_img,'.')) }}" alt="Border Opportunities">
             </div>
             <div class="col-sm-4 text-center">
                 <a href="{{ isset($cms) ? $cms->footer_fb : '#' }}"><i class="fa fa-facebook" aria-hidden="true"></i></a>

@@ -9,14 +9,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <link rel="icon" href="{{ asset('public/favicon.ico') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <script src="{{ asset('js/jquery/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('js/popper.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <link rel="icon" href="{{ asset('public/public/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ asset('public/css/bootstrap.min.css') }}">
+    <script src="{{ asset('public/js/jquery/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('public/js/popper.js') }}"></script>
+    <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
 
     <!-- Styles -->
-    <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/public/css/app.css') }}" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Ubuntu:400,700');
 
@@ -157,6 +157,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('public/js/app.js') }}"></script>
+    <script src="{{ asset('public/public/js/app.js') }}"></script>
 </body>
 </html>

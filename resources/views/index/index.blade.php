@@ -5,9 +5,9 @@
     <!-- ///////////  BANNER  \\\\\\\\\\\ -->
 
     <!-- ================================== -->
-    <div class="banner div-section" id="banner" style="background: url('{{ asset('uploads/cms/banner_img'. strchr($cms->banner_img,'.')) }}') no-repeat center center;">
+    <div class="banner div-section" id="banner" style="background: url('{{ asset('public/uploads/cms/banner_img'. strchr($cms->banner_img,'.')) }}') no-repeat center center;">
         <div class="container text-center">
-            <img class="img-fluid vertical-align absolute-centered" src="{{ asset('uploads/cms/banner_top_img'. strchr($cms->banner_top_img,'.')) }}" alt="Border Opportunities">
+            <img class="img-fluid vertical-align absolute-centered" src="{{ asset('public/uploads/cms/banner_top_img'. strchr($cms->banner_top_img,'.')) }}" alt="Border Opportunities">
         </div>
     </div>
     <!-- ================================== -->
@@ -21,21 +21,21 @@
             <p class="text gray">{{ isset($cms) ? $cms->about_text : '' }}</p>
             <div class="row">
                 <div class="col">
-                    <img class="img-fluid" src="{{ asset('uploads/cms/about_item_1_img'. strchr($cms->about_item_1_img,'.')) }}" alt="">
+                    <img class="img-fluid" src="{{ asset('public/uploads/cms/about_item_1_img'. strchr($cms->about_item_1_img,'.')) }}" alt="">
                     <div class="text-container">
                         <h2 class="smooth-transition">{{ isset($cms) ? $cms->about_item_1_title : '' }}</h2>
                         <p class="smooth-transition">{{ isset($cms) ? $cms->about_item_1_text : '' }}</p>
                     </div>
                 </div>
                 <div class="col">
-                    <img class="img-fluid" src="{{ asset('uploads/cms/about_item_2_img'. strchr($cms->about_item_2_img,'.')) }}" alt="">
+                    <img class="img-fluid" src="{{ asset('public/uploads/cms/about_item_2_img'. strchr($cms->about_item_2_img,'.')) }}" alt="">
                     <div class="text-container">
                         <h2 class="smooth-transition">{{ isset($cms) ? $cms->about_item_2_title : '' }}</h2>
                         <p class="smooth-transition">{{ isset($cms) ? $cms->about_item_2_text : '' }}</p>
                     </div>
                 </div>
                 <div class="col">
-                    <img class="img-fluid" src="{{ asset('uploads/cms/about_item_3_img'. strchr($cms->about_item_3_img,'.')) }}" alt="">
+                    <img class="img-fluid" src="{{ asset('public/uploads/cms/about_item_3_img'. strchr($cms->about_item_3_img,'.')) }}" alt="">
                     <div class="text-container">
                         <h2 class="smooth-transition">{{ isset($cms) ? $cms->about_item_3_title : '' }}</h2>
                         <p class="smooth-transition">{{ isset($cms) ? $cms->about_item_3_text : '' }}</p>
@@ -56,7 +56,7 @@
                     <li class="hex">
                         <div class="hexIn">
                             <a class="hexLink" href="#">
-                                <img src="{{ asset('/uploads/cms/hexagons/'.$hexagon->hexagon_img) }}" alt="" />
+                                <img src="{{ asset('public//uploads/cms/hexagons/'.$hexagon->hexagon_img) }}" alt="" />
                                 <h3>Aeroespacial</h3>
                             </a>
                         </div>
@@ -78,7 +78,7 @@
                     @if($key % 5 == 0)
                         <div class="w-100"></div>
                     @endif
-                    <div class="col text-center"><img class="img-fluid" src="{{  asset('/uploads/cms/directories/'.$directory->directory_img) }}" alt=""></div>
+                    <div class="col text-center"><img class="img-fluid" src="{{  asset('public//uploads/cms/directories/'.$directory->directory_img) }}" alt=""></div>
                 @endforeach
             </div>
         </div>

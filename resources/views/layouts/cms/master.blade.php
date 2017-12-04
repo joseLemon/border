@@ -7,15 +7,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ env('APP_NAME') }}</title>
     <link rel="icon" href="{{ asset('public/favicon.ico') }}">
-    <link rel="stylesheet" href="{{ asset('cms/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('cms/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('cms/js/jquery-confirm/css/jquery-confirm.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/cms/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/cms/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/cms/js/jquery-confirm/css/jquery-confirm.css') }}">
     @yield('head')
-    <script src="{{ asset('js/jquery/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('js/jquery-ui/easing/jquery-ui-easing.js') }}"></script>
-    <script src="{{ asset('cms/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('cms/js/jquery-confirm/js/jquery-confirm.js') }}"></script>
+    <script src="{{ asset('public/js/jquery/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('public/js/jquery-ui/easing/jquery-ui-easing.js') }}"></script>
+    <script src="{{ asset('public/cms/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('public/cms/js/jquery-confirm/js/jquery-confirm.js') }}"></script>
     <script>
         $(document).ready(function () {
             // Add slideDown animation to Bootstrap dropdown when expanding.

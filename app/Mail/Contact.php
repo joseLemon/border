@@ -29,7 +29,7 @@ class Contact extends Mailable
      */
     public function build() {
         return $this->from($this->contact->contact_email, $this->contact->contact_name)
-            ->subject('Mensaje de la forma de contacto del Sitio Web de SIDE')
+            ->subject('Message from the contact form of Border Opportunities Web Site')
             ->view('emails.contact');
     }
 }
